@@ -240,23 +240,46 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-
 function getBiggestBoxOfficeMovie(movies) {
-  if (movies.length === 0) {
-    return null;
-  }
-  let biggestMovie = movies[0];
-  //let smashHit = " "
+ if (movies.length === 0){
+  return null;
+}
 
-  for (let i = 0; i < movies.length; i++) {
-    let movie = movies[i];
+let biggestMovie = 0
 
-    if (movie.boxOffice > biggestMovie.boxOffice) {
-      biggestMovie = movie;
-    }
-    return movie.title;
+for (let movie of movies){
+  
+  let moneyMade = 1 * (movie.boxOffice.slice(1).split(',').join(''))
+  //MULTIPLY STRING BY ONE TO CHANGE IT INTO A NUMBER
+  //.SLICE USED TO REMOVE $ SIGN
+  //.SPLIT USED TO REMOVE COMMA'S
+  //.JOIN USED TO REMOVE SPACES LEFT BY COMMA'S
+  if (moneyMade > biggestMovie){
+    biggestMovie = moneyMade
+    
+    smashHit = movie.title
   }
 }
+return smashHit 
+}
+
+
+// function getBiggestBoxOfficeMovie(movies) {
+//   if (movies.length === 0) {
+//     return null;
+//   }
+//   let biggestMovie = 1 * movies[0];
+//   let smashHit = " "
+
+//   for (let i = 0; i < movies.length; i++) {
+//     let movie = movies[i];
+
+//     if (movie.boxOffice * 1 > biggestMovie.boxOffice) {
+//       biggestMovie = movie;
+//     }
+//     return smashHit;
+//   }
+// }
 
 // Do not change anything below this line.
 module.exports = {
