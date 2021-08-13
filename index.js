@@ -30,7 +30,7 @@ const exampleMovies = require("./movies");
  */
 function getAllMovieTitles(movies) {
   let allMovies = [];
-  
+
   //MOVIE REPRESENTS EACH MOVIE INSIDE ARRAY OF MOVIES
   for (const movie of movies) {
     //PUSHED THE TITLE OF ALL MOVIES INTO NEW ARRAY
@@ -38,8 +38,6 @@ function getAllMovieTitles(movies) {
   }
   return allMovies;
 }
-
-  
 
 //console.log(getAllMovieTitles(exampleMovies))
 
@@ -64,7 +62,7 @@ function getHighestMetascore(movies) {
 
   for (let i = 0; i < movies.length; i++) {
     let movie = movies[i];
-    
+
     //IF THE MOVIE METASCORE IS GREATER THAN MY CURRENT MOVIE METASCORE
     if (movie.metascore > currentScore.metascore) {
       //MY CURRENT MOVIE IS NOW HIGHEST AND REPLACES PREVIOUS INDEX
@@ -119,10 +117,12 @@ function countByRating(movies) {
   //LOOP THRU MOVIES ARRAY
   for (let i = 0; i < movies.length; i++) {
     let movie = movies[i];
-    
+
+    //IF THE MOVIE.RATED IS EQUAL TO ANOTHER MOVIE.RATED, 1 IS ADDED TO THAT RATING
     if ((ratedMovie[movie.rated] = ratedMovie[movie.rated])) {
       ratedMovie[movie.rated] = ratedMovie[movie.rated] + 1;
     } else {
+      //IF MOVIE IS UNDEFINED/EMPTY, ASSIGN 1 AS ITS VALUE
       ratedMovie[movie.rated] === undefined;
       ratedMovie[movie.rated] = 1;
     }
@@ -147,18 +147,16 @@ function countByRating(movies) {
  */
 function findById(movies, id) {
   for (i = 0; i < movies.length; i++) {
-    let movie  = movies[i]
-    
-    //IF MOVIE AT THE imdbID MATCHES THE GIVEN ID
-    if(movie.imdbID === id) {
-      //RETURN THE NAME OF THAT MOVIE
-      return movie
-    }
+    let movie = movies[i];
 
-  }//If ID is empty or the ID does not match any movie, return NULL.
-  return null
+    //IF MOVIE AT THE imdbID MATCHES THE GIVEN ID
+    if (movie.imdbID === id) {
+      //RETURN THE NAME OF THAT MOVIE
+      return movie;
+    }
+  } //If ID is empty or the ID does not match any movie, return NULL.
+  return null;
 }
-  
 
 /**
  * filterByGenre()
@@ -180,7 +178,19 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  let genreFilter = [];
+
+  for (let movie of movies) {
+    //IF THE MOVE.GENRE INCLUDES GIVEN GENRE
+    //CASE-INSENSITIVE: NEEDED .toLowerCase
+    if (movie.genre.toLowerCase().includes(genre.toLowerCase())) {
+      //PUSHED THAT MOVIE INTO NEW ARRAY
+      genreFilter.push(movie);
+    }
+  }
+  return genreFilter;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -204,7 +214,31 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  let releasedMovie = [];
+
+  // for (let i = 0; i < movies.length; i++) {
+  //   let movie = movies[i]
+
+  //   if(movie.releasedMovie.slice(movie.releasedMovie.length-4) <= year) {
+  //     releasedMovie.push(movie)
+  //   }
+  //   return releasedMovie;
+  // }
+}
+/*function filterByGenre(movies, genre) {
+  let genreFilter = []
+    
+  for (let movie of movies) {
+    //IF THE MOVE.GENRE INCLUDES GIVEN GENRE
+    //CASE-INSENSITIVE: NEEDED .toLowerCase
+      if (movie.genre.toLowerCase().includes(genre.toLowerCase())){
+        //PUSHED THAT MOVIE INTO NEW ARRAY
+        genreFilter.push(movie)
+      }
+    }
+    return genreFilter
+  }*/
 
 /**
  * getBiggestBoxOfficeMovie()
@@ -217,7 +251,23 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-function getBiggestBoxOfficeMovie() {}
+function getBiggestBoxOfficeMovie(movies) {
+  if (movies.length === 0) {
+    return null;
+  }
+  let biggestMovie = movies[0];
+
+  for (let i = 0; i < movies.length; i++) {
+    //let movie = movies[i];
+
+    if (movies[i].boxOffice > biggestMovie) {
+      biggestMovie = movies[i].boxOffice;
+      
+    }
+    return movies[i].title;
+  }
+}
+  
 
 // Do not change anything below this line.
 module.exports = {
