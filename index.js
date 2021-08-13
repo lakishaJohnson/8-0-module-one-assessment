@@ -30,16 +30,18 @@ const exampleMovies = require("./movies");
  */
 function getAllMovieTitles(movies) {
   let allMovies = [];
-
+  
+  //MOVIE REPRESENTS EACH MOVIE INSIDE ARRAY OF MOVIES
   for (const movie of movies) {
-    allMovies.push(movie.title)
+    //PUSHED THE TITLE OF ALL MOVIES INTO NEW ARRAY
+    allMovies.push(movie.title);
   }
   return allMovies;
 }
-    
+
+  
+
 //console.log(getAllMovieTitles(exampleMovies))
-
-
 
 /**
  * getHighestMetascore()
@@ -53,18 +55,23 @@ function getAllMovieTitles(movies) {
  *  //> 96
  */
 function getHighestMetascore(movies) {
+  //IF ARRAY IS EMPTY
   if (movies.length === 0) {
     return 0;
   }
-  let currentScore = movies[0]
+  //CREATED VARIABLE FOR MOVIE AND EVERY INDEX/FOR EVERY ITERATION THRU ARRAY
+  let currentScore = movies[0];
 
-  for(let i = 0; i< movies.length; i++) {
-    let movie = movies[i]
-
-    if(movie.metascore > currentScore.metascore) {
+  for (let i = 0; i < movies.length; i++) {
+    let movie = movies[i];
+    
+    //IF THE MOVIE METASCORE IS GREATER THAN MY CURRENT MOVIE METASCORE
+    if (movie.metascore > currentScore.metascore) {
+      //MY CURRENT MOVIE IS NOW HIGHEST AND REPLACES PREVIOUS INDEX
       currentScore = movie;
     }
   }
+  //TO CHANGE A STRING INTO A NUMBER, MULTIPLY BY ONE
   return currentScore.metascore * 1;
 }
 
@@ -79,7 +86,19 @@ function getHighestMetascore(movies) {
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
+function getAverageIMDBRating(movies) {
+  if (movies.length === 0) {
+    return 0;
+  }
+  let averageRate = 0;
+
+  for (const movie of movies) {
+    //0 = 0 + MOVIE.imdbRATING TIMES 1 TO CHANGE STRING INTO NUMBER
+    averageRate += movie.imdbRating * 1;
+  }
+  //TO GET AVERAGE DIVIDE AVERAGE RATE BY THE AMOUNT OF MOVIES IN ARRAY
+  return averageRate / movies.length;
+}
 
 /**
  * countByRating()
@@ -92,7 +111,25 @@ function getAverageIMDBRating() {}
  *  countByRating(movies);
  *  //> { G: 3, PG: 7 }
  */
-function countByRating() {}
+function countByRating(movies) {
+  //RETURN {PG:7}
+  //SET DEFAULT VARIABLE
+  let ratedMovie = {};
+
+  //LOOP THRU MOVIES ARRAY
+  for (let i = 0; i < movies.length; i++) {
+    let movie = movies[i];
+    
+    if ((ratedMovie[movie.rated] = ratedMovie[movie.rated])) {
+      ratedMovie[movie.rated] = ratedMovie[movie.rated] + 1;
+    } else {
+      ratedMovie[movie.rated] === undefined;
+      ratedMovie[movie.rated] = 1;
+    }
+  }
+  //RETURN DEFAULT VARIABLE
+  return ratedMovie;
+}
 
 /**
  * findById()
@@ -108,7 +145,20 @@ function countByRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  for (i = 0; i < movies.length; i++) {
+    let movie  = movies[i]
+    
+    //IF MOVIE AT THE imdbID MATCHES THE GIVEN ID
+    if(movie.imdbID === id) {
+      //RETURN THE NAME OF THAT MOVIE
+      return movie
+    }
+
+  }//If ID is empty or the ID does not match any movie, return NULL.
+  return null
+}
+  
 
 /**
  * filterByGenre()
