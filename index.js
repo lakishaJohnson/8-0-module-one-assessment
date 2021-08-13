@@ -122,7 +122,7 @@ function countByRating(movies) {
     if ((ratedMovie[movie.rated] = ratedMovie[movie.rated])) {
       ratedMovie[movie.rated] = ratedMovie[movie.rated] + 1;
     } else {
-      //IF MOVIE IS UNDEFINED/EMPTY, ASSIGN 1 AS ITS VALUE
+      //IF MOVIE.RATED IS UNDEFINED/EMPTY, ASSIGN 1 AS ITS VALUE
       ratedMovie[movie.rated] === undefined;
       ratedMovie[movie.rated] = 1;
     }
@@ -217,28 +217,16 @@ function filterByGenre(movies, genre) {
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   let releasedMovie = [];
 
-  // for (let i = 0; i < movies.length; i++) {
-  //   let movie = movies[i]
+   for (let i = 0; i < movies.length; i++) {
+     let movie = movies[i]
 
-  //   if(movie.releasedMovie.slice(movie.releasedMovie.length-4) <= year) {
-  //     releasedMovie.push(movie)
-  //   }
-  //   return releasedMovie;
-  // }
-}
-/*function filterByGenre(movies, genre) {
-  let genreFilter = []
-    
-  for (let movie of movies) {
-    //IF THE MOVE.GENRE INCLUDES GIVEN GENRE
-    //CASE-INSENSITIVE: NEEDED .toLowerCase
-      if (movie.genre.toLowerCase().includes(genre.toLowerCase())){
-        //PUSHED THAT MOVIE INTO NEW ARRAY
-        genreFilter.push(movie)
-      }
-    }
-    return genreFilter
-  }*/
+     if(1 * (movie.released.split(" ")[2]) <= year)  {
+       releasedMovie.push(movie)
+     }
+   }
+   return releasedMovie
+  }
+
 
 /**
  * getBiggestBoxOfficeMovie()
@@ -251,20 +239,20 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-function getBiggestBoxOfficeMovie(movies) {
-  if (movies.length === 0) {
+ function getBiggestBoxOfficeMovie(movies) {
+   if (movies.length === 0) {
     return null;
   }
   let biggestMovie = movies[0];
 
   for (let i = 0; i < movies.length; i++) {
-    //let movie = movies[i];
+    let movie = movies[i];
 
-    if (movies[i].boxOffice > biggestMovie) {
-      biggestMovie = movies[i].boxOffice;
+    if (movie.boxOffice < biggestMovie.boxOffice) {
+      biggestMovie = movie.boxOffice;
       
     }
-    return movies[i].title;
+    return movie.title;
   }
 }
   
