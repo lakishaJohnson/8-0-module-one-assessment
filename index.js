@@ -63,7 +63,7 @@ function getHighestMetascore(movies) {
   for (let i = 0; i < movies.length; i++) {
     let movie = movies[i];
 
-    //IF THE MOVIE METASCORE IS GREATER THAN MY CURRENT MOVIE METASCORE
+    //IF THE MOVIE METASCORE IS GREATER THAN MY CURRENT MOVIE METASCORE.. COMPARING A STRING TO A STRING
     if (movie.metascore > currentScore.metascore) {
       //MY CURRENT MOVIE IS NOW HIGHEST AND REPLACES PREVIOUS INDEX
       currentScore = movie;
@@ -72,6 +72,24 @@ function getHighestMetascore(movies) {
   //TO CHANGE A STRING INTO A NUMBER, MULTIPLY BY ONE
   return currentScore.metascore * 1;
 }
+//HELPER FUNCTION
+/*function getMetascore(movie) {
+  return Number(movie.metascore)
+}
+
+function getHighestMetascore(movies) {
+  if(movies.length === 0) {
+    return 0;
+  }
+  let highest = getMetascore(movies[0]);
+  for (const movie of movies) {
+    const metascore = getMatascore(movie);
+    if (metascore > highest) {
+      highest = metascore
+    }
+  }NUMBER TURNS A STRING INTO A NUMBER
+  return Number(highest)
+}*/
 
 /**
  * getAverageIMDBRating()
@@ -118,7 +136,7 @@ function countByRating(movies) {
   for (let i = 0; i < movies.length; i++) {
     let movie = movies[i];
 
-    //IF THE MOVIE.RATED IS EQUAL TO ANOTHER MOVIE.RATED, 1 IS ADDED TO THAT RATING
+    //IF THE MOVIE.RATED IS EQUAL TO ANOTHER MOVIE.RATED, 1 IS ADDED TO THAT RATING VALUE
     if ((ratedMovie[movie.rated] = ratedMovie[movie.rated])) {
       ratedMovie[movie.rated] = ratedMovie[movie.rated] + 1;
     } else {
@@ -240,46 +258,48 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
+
+
 function getBiggestBoxOfficeMovie(movies) {
- if (movies.length === 0){
-  return null;
-}
-
+//  if (movies.length === 0){
+//   return null;
+// }
+//let biggestMovie = movies[0].boxOffice.slice(1).split(',').join('')
 let biggestMovie = 0
+let smashHit;
+let madeMoney = null;
 
-for (let movie of movies){
-  
-  let moneyMade = 1 * (movie.boxOffice.slice(1).split(',').join(''))
-  //MULTIPLY STRING BY ONE TO CHANGE IT INTO A NUMBER
+for (const movie of movies) {
+  smashHit = Number(movie.boxOffice.slice(1).split(",").join(""))
   //.SLICE USED TO REMOVE $ SIGN
   //.SPLIT USED TO REMOVE COMMA'S
   //.JOIN USED TO REMOVE SPACES LEFT BY COMMA'S
-  if (moneyMade > biggestMovie){
-    biggestMovie = moneyMade
-    
-    smashHit = movie.title
+  if (smashHit > biggestMovie) {
+    biggestMovie = smashHit
+    madeMoney = movie.title
   }
 }
-return smashHit 
+return madeMoney
 }
+  
+  
+/*function getBiggestBoxOfficeMovie(movies) {
+  let biggestMovie = 0;
+  let noMovie = null;
+  let smashHit;
 
+  for (const movie of movies){
+     smashHit = Number(
+      movie.boxOffice.slice(1).split(",").join(""));
+      if(smashHit > biggestMovie) {
+      biggestMovie = smashHit
+      noMovie = movie.title;
+    }
+  }
+  return noMovie;
+}*/
+      
 
-// function getBiggestBoxOfficeMovie(movies) {
-//   if (movies.length === 0) {
-//     return null;
-//   }
-//   let biggestMovie = 1 * movies[0];
-//   let smashHit = " "
-
-//   for (let i = 0; i < movies.length; i++) {
-//     let movie = movies[i];
-
-//     if (movie.boxOffice * 1 > biggestMovie.boxOffice) {
-//       biggestMovie = movie;
-//     }
-//     return smashHit;
-//   }
-// }
 
 // Do not change anything below this line.
 module.exports = {
